@@ -116,6 +116,8 @@ public class LoadDll : MonoBehaviour
 
         Run_InstantiateComponentByAsset();
 
+        TestAotAssemblyClass.StartFromAot();
+
         StartCoroutine(DelayAndQuit());
     }
 
