@@ -116,6 +116,7 @@ public class LoadDll : MonoBehaviour
 
         Run_InstantiateComponentByAsset();
 
+        Run_TestSubAssembly();
         StartCoroutine(DelayAndQuit());
     }
 
@@ -138,5 +139,10 @@ public class LoadDll : MonoBehaviour
         AssetBundle ab = AssetBundle.LoadFromMemory(LoadDll.ReadBytesFromStreamingAssets("prefabs"));
         GameObject cube = ab.LoadAsset<GameObject>("Cube");
         GameObject.Instantiate(cube);
+    }
+
+    private static void Run_TestSubAssembly()
+    {
+        // HotUpdateSub.Call();
     }
 }

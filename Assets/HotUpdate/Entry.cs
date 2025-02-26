@@ -13,6 +13,9 @@ public static class Entry
         Debug.Log("[Entry::Start] 看到这个日志表示你成功运行了热更新代码");
         Run_InstantiateByAddComponent();
         Run_AOTGeneric();
+
+        Run_HotUpdateSubDirectly();
+        Run_HotUpdateSubByRefection();
     }
 
     private static void Run_InstantiateByAddComponent()
@@ -36,5 +39,17 @@ public static class Entry
         var arr = new List<MyVec3>();
         arr.Add(new MyVec3 { x = 1 });
         Debug.Log("[Demos.Run_AOTGeneric] 成功运行泛型代码");
+    }
+
+    private static void Run_HotUpdateSubDirectly()
+    {
+        // HotUpdateSub.DirectlyCall();
+    }
+    private static void Run_HotUpdateSubByRefection()
+    {
+        Assembly hotUpdateAss = System.AppDomain.CurrentDomain.GetAssemblies().First(a => a.GetName().Name == "HotUpdateSub");
+        Type type = hotUpdateAss.GetType("HotUpdateSub");
+        type.GetMethod("CallByRefection").Invoke(null, null);
+        HotUpdateSub.CallByRefection();
     }
 }
